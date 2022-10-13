@@ -51,6 +51,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     // Burada bir for loop ile tüm sonuçları alarak bunlardan birisi diye kullanıcı tarafına da gösterimini sağlayabilirz ancak biz ilk sonucu alıp en yüksek sonuç o olduğu için gösterimini gerçekleştireceğiz.
                     if results.count > 0 {
                         let topResult = results.first
+                        
+                        // Sonucu kullanıcıya göstermeden önce request'i çalıştırmamız lazım ve bunu asenkron olarak yapmamız lazım. Bunun için de DispatchQueue.main.async fonksiyonunu kullanacağız.
+                        DispatchQueue.main.async {
+                            // Burada topResult içerisinde gelen tahminin yüzdelik olarak değerini alıyoruz. Bu bize 0 ile 1 arasında dönüş verecek. Yani %25 olarak gelmesini istediğimiz bir tahmin aslında 0.025 olarak dönecek.
+                            let confidenceLevel = (topResult?.confidence ?? 0 )*100
+                            // Burada topResult içerisinde gelen tahminin ne olduğunu gösteriyoruz.
+                            self.resultLabel.text = "Confidence= \(confidenceLevel) it is \(topResult!.identifier)"
+                        }
                     }
                 }
             }
