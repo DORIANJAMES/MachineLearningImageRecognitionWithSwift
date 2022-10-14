@@ -41,8 +41,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // 1) REQUEST
         // 2) HANDLER
         
+        // DispatchQueue.global(
+        
         
         // Burada VNCoreMLModel oluştururken bize bir hata dönderecek bu hatalardan kaçınabilmek için öncekile bu fonksiyonu "try" yapısı içerisine sokup bir değişkene atamamız lazım. DO ile yapılan TRY'dan farklı olarak "if let" ile de bir TRY yapısı oluşturabiliyoruz. ardından VNCoreMLModel fonksiyonu bizden bir parametre isteyecek. developer.apple.com'da CoreML olarak arattırıp indirdiğimiz modeli bir sınıf gibi tanıtıp ardından ".model" olarak yazdığımzda, VNCoreMLModel'in istediği for parametresindeki atamayı yapmış oluyoruz. Bu opsiyonel bir return veriyor. Bundan dolayı da TRY'ın sonuna "?" soru işareti koyarak bu opsiyonellikten kaçınıyoruz.
+        // 2)
         if let model = try? VNCoreMLModel(for: MobileNetV2().model){
             let request = VNCoreMLRequest(model: model) { vnRequest, error in
                 
