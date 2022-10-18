@@ -59,8 +59,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         DispatchQueue.main.async {
                             // Burada topResult içerisinde gelen tahminin yüzdelik olarak değerini alıyoruz. Bu bize 0 ile 1 arasında dönüş verecek. Yani %25 olarak gelmesini istediğimiz bir tahmin aslında 0.025 olarak dönecek.
                             let confidenceLevel = (topResult?.confidence ?? 0 )*100
+                            let rounded = Int(confidenceLevel * 100) / 100
                             // Burada topResult içerisinde gelen tahminin ne olduğunu gösteriyoruz.
-                            self.resultLabel.text = "Confidence= \(confidenceLevel) it is \(topResult!.identifier)"
+                            self.resultLabel.text = "Confidence= \(rounded) it is \(topResult!.identifier)"
                         }
                     }
                 }
